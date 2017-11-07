@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ViewRoutingModule } from './view-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ViewPartsModule } from './view-parts/view-parts.module';
+import { OverviewComponent } from './overview/overview.component';
 
 @NgModule({
   imports: [
@@ -11,6 +11,6 @@ import { ViewPartsModule } from './view-parts/view-parts.module';
     ViewRoutingModule,
     ViewPartsModule
   ],
-  declarations: [DashboardComponent]
+  declarations: [DashboardComponent, OverviewComponent],
 })
 export class ViewModule { }
