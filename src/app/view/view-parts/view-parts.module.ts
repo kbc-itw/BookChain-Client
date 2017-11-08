@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import * as material from '@angular/material';
 
 import { HeaderComponent } from './header/header.component';
+import { NotImplementedDirective, NotImplementedDialogComponent } from './not-implemented/not-implemented.directive';
 
 @NgModule({
   imports: [
     CommonModule,
-    material.MatToolbarModule
+    material.MatToolbarModule,
+    material.MatDialogModule
   ],
-  declarations: [HeaderComponent],
-  exports: [ HeaderComponent ]
+  entryComponents: [NotImplementedDialogComponent],
+  declarations: [HeaderComponent, NotImplementedDirective, NotImplementedDialogComponent],
+  exports: [ HeaderComponent, NotImplementedDirective ]
 })
 export class ViewPartsModule { }
