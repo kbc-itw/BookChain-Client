@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardComponent } from './dashboard.component';
+import { MatButtonModule, MatExpansionModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -8,6 +10,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ MatButtonModule, MatExpansionModule, BrowserAnimationsModule ],
       declarations: [ DashboardComponent ]
     })
     .compileComponents();
@@ -19,7 +22,7 @@ describe('DashboardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('画面生成', () => {
     expect(component).toBeTruthy();
   });
 });

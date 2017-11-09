@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ViewPartsModule } from '../view-parts/view-parts.module';
+import { HeaderComponent } from '../view-parts/header/header.component';
 import { OverviewComponent } from './overview.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
@@ -8,6 +10,10 @@ describe('OverviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        ViewPartsModule
+       ],
       declarations: [ OverviewComponent ]
     })
     .compileComponents();
@@ -19,7 +25,7 @@ describe('OverviewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('画面生成', () => {
     expect(component).toBeTruthy();
   });
 });

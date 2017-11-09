@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatToolbarModule } from '@angular/material';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -8,6 +8,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ MatToolbarModule ],
       declarations: [ HeaderComponent ]
     })
     .compileComponents();
@@ -19,7 +20,14 @@ describe('HeaderComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('画面生成', () => {
     expect(component).toBeTruthy();
   });
+
+  it('H1タグがBookChain', async(() => {
+    fixture = TestBed.createComponent(HeaderComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('BookChain');
+  }));
 });
