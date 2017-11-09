@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import * as material from '@angular/material';
 
 import { ViewRoutingModule } from './view-routing.module';
 import { ViewPartsModule } from './view-parts/view-parts.module';
@@ -11,7 +12,9 @@ import { OverviewComponent } from './overview/overview.component';
   imports: [
     CommonModule,
     ViewRoutingModule,
-    ViewPartsModule
+    ViewPartsModule,
+    material.MatButtonModule,
+    material.MatExpansionModule
   ],
   declarations: [DashboardComponent, OverviewComponent],
   exports: [OverviewComponent]
