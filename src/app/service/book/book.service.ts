@@ -46,7 +46,8 @@ export class BookService {
               resolve({
                 id:            data.items[0].id,
                 title:         data.items[0].volumeInfo.title,
-                isbn13:        data.items[0].volumeInfo.industryIdentifiers[0].identifier,
+                isbn10:        data.items[0].volumeInfo.industryIdentifiers[0].identifier,
+                isbn13:        data.items[0].volumeInfo.industryIdentifiers[1].identifier,
                 authors:       data.items[0].volumeInfo.authors,
                 publishedDate: data.items[0].volumeInfo.publishedDate,
                 thumbnailURL:  data.items[0].volumeInfo.imageLinks.smallThumbnail

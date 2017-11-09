@@ -10,7 +10,7 @@ export interface Book {
     // これを利用すると、Google Books上の該当書籍のページへのリンクが生成できる。
     readonly id: string;
 
-    // isbn10は13に再計算する。
+    readonly isbn10: string;
     readonly isbn13: string;
 
     readonly title: string;
