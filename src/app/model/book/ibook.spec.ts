@@ -1,11 +1,11 @@
-import { Book } from './book';
+import { IBook } from './ibook';
 
 
 
 describe('book', () => {
 
   it('インスタンス生成', () => {
-    const book: Book = {
+    const book: IBook = {
       id:            's4CRHAAACAAJ',
       title:         'アラビアの夜の種族',
       authors:       [' 古川日出男'],

@@ -1,4 +1,4 @@
-import { Book } from '../../model/book/book';
+import { IBook } from '../../model/book/ibook';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as ISBN from 'isbn-utils';
@@ -12,7 +12,7 @@ import * as ISBN from 'isbn-utils';
 export class BookService {
 
   // キャッシュした書籍データ。isbn13から導出。
-  private cachedBookData: Map<string, Book> = new Map<string, Book>();
+  private cachedBookData: Map<string, IBook> = new Map<string, IBook>();
 
   // ajaxを利用する都合DIする
   constructor(private http: HttpClient) { }
@@ -22,8 +22,8 @@ export class BookService {
    * @param rowIsbn 取得したい書籍のISBNコード。ISBN10または13。
    * @returns 取得した書籍データ。Google Books APIsから取得失敗した場合reject。
    */
-  public get(rawIsbn: string): Promise<Book> {
-    return new Promise<Book>((resolve, reject) => {
+  public get(rawIsbn: string): Promise<IBook> {
+    return new Promise<IBook>((resolve, reject) => {
 
       if (!ISBN.isValid(rawIsbn)) {
         reject(new Error('Invalid ISBN'));
@@ -41,20 +41,20 @@ export class BookService {
       } else {
         this.http.get<GoogleBooksAPIResultBookData>(url)
           .subscribe(
-            data => {
-              // 即時オブジェクトでBook型をでっち上げる
-              resolve({
-                id:            data.items[0].id,
-                title:         data.items[0].volumeInfo.title,
-                isbn10:        data.items[0].volumeInfo.industryIdentifiers[0].identifier,
-                isbn13:        data.items[0].volumeInfo.industryIdentifiers[1].identifier,
-                authors:       data.items[0].volumeInfo.authors,
-                publishedDate: data.items[0].volumeInfo.publishedDate,
-                thumbnailURL:  data.items[0].volumeInfo.imageLinks.smallThumbnail
-              });
-            },
-            reject
-        );
+          data => {
+            // 即時オブジェクトでBook型をでっち上げる
+            resolve({
+              id: data.items[0].id,
+              title: data.items[0].volumeInfo.title,
+              isbn10: data.items[0].volumeInfo.industryIdentifiers[0].identifier,
+              isbn13: data.items[0].volumeInfo.industryIdentifiers[1].identifier,
+              authors: data.items[0].volumeInfo.authors,
+              publishedDate: data.items[0].volumeInfo.publishedDate,
+              thumbnailURL: data.items[0].volumeInfo.imageLinks.smallThumbnail
+            });
+          },
+          reject
+          );
       }
     });
   }
@@ -66,14 +66,14 @@ export class BookService {
  */
 interface GoogleBooksAPIResultBookData {
   items: {
-    id:              string;
+    id: string;
     volumeInfo: {
-      title:         string,
-      authors:       string,
+      title: string,
+      authors: string,
       publishedDate: string,
-      thumbnail:     string,
+      thumbnail: string,
       industryIdentifiers: {
-        identifier:  string
+        identifier: string
       }
     }
   };
