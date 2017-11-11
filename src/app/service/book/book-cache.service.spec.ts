@@ -60,6 +60,10 @@ describe('BookCacheService', () => {
     expect(service.update(testData)).toBeFalsy();
   }));
 
+  it('getAll', inject([BookCacheService], (service: BookCacheService) => {
+    expect(service.getAll()).toEqual([]);
+  }));
+
   describe('ストレージあり', () => {
     beforeEach(() => {
       fakeStorage = {
@@ -72,6 +76,15 @@ describe('BookCacheService', () => {
             authors: ['東野圭吾'],
             publishedDate: '1998',
             thumbnailURL: 'http://books.google.com/books/content?id=m2BpPQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+          },
+          '9784309024226': {
+            id: 'GEX6jgEACAAJ',
+            isbn10: '430902422X',
+            isbn13: '9784309024226',
+            title: 'カラマーゾフの兄弟',
+            authors: ['亀山郁夫'],
+            publicshedData: '2015-11-22',
+            thumbnailURL: 'http://books.google.com/books/content?id=GEX6jgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
           }
         }
       };
@@ -100,6 +113,20 @@ describe('BookCacheService', () => {
       expect(fakeStorage['bookchain-Angular-book']).toEqual({});
     }));
 
+    it('getAll', inject([BookCacheService], (service: BookCacheService) => {
+      const kameyama = {
+        id: 'GEX6jgEACAAJ',
+        isbn10: '430902422X',
+        isbn13: '9784309024226',
+        title: 'カラマーゾフの兄弟',
+        authors: ['亀山郁夫'],
+        publishedData: '2015-11-22',
+        thumbnailURL: 'http://books.google.com/books/content?id=GEX6jgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+      };
+      const resultArray = service.getAll();
+      expect(resultArray[0]).toEqual(testData);
+      expect(resultArray[1]).toEqual(kameyama);
+    }));
   });
 
 });
