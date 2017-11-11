@@ -22,16 +22,26 @@ export class BookCacheService implements ICache<IBook> {
     this.cachedBook = JSON.parse(localStorage.getItem(this.BOOK_TABLE)) || {};
   }
 
-  add(value: IBook): boolean {
+ /**
+   * キャッシュに書籍データを格納する
+   * @param book 格納したい書籍データ
+   * @returns 新規格納できたらtrue、既に格納済みのオブジェクトならfalse
+   */
+  add(book: IBook): boolean {
+    if (this.cachedBook[book.isbn13] === undefined) {
+      this.cachedBook[book.isbn13] = book;
+      localStorage.setItem(this.BOOK_TABLE, JSON.stringify(this.cachedBook));
+      return true;
+    }
+    return false;
+  }
+  remove(book: IBook): boolean {
     throw new Error("Method not implemented.");
   }
-  remove(value: IBook): boolean {
+  get(isbn13: string): IBook[] {
     throw new Error("Method not implemented.");
   }
-  get(query: string): IBook[] {
-    throw new Error("Method not implemented.");
-  }
-  update(query: string, value: IBook): boolean {
+  update(isbn13: string, book: IBook): boolean {
     throw new Error("Method not implemented.");
   }
   clear(): void {
