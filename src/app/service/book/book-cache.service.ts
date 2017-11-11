@@ -59,10 +59,20 @@ export class BookCacheService implements ICache<IBook> {
   get(isbn13: string): IBook {
     return this.cachedBook[isbn13] || null;
   }
-
+  /**
+   * キャッシュの書籍データを更新する
+   * @param book 更新したい削除データ isbn13で識別する
+   * @return 更新できたらtrue、 該当データが存在しないならfalse
+   */
   update(book: IBook): boolean {
-    throw new Error("Method not implemented.");
+    if (this.cachedBook[book.isbn13] === undefined) {
+      return false;
+    }
+    this.cachedBook[book.isbn13] = book;
+    localStorage.setItem(this.BOOK_TABLE, JSON.stringify(this.cachedBook));
+    return true;
   }
+  
   clear(): void {
     throw new Error("Method not implemented.");
   }

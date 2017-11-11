@@ -56,6 +56,9 @@ describe('BookCacheService', () => {
     expect(service.get(testData.isbn13)).toBeNull();
   }));
 
+  it('update 失敗する場合', inject([BookCacheService], (service: BookCacheService) => {
+    expect(service.update(testData)).toBeFalsy();
+  }));
 
   describe('ストレージあり', () => {
     beforeEach(() => {
@@ -86,6 +89,10 @@ describe('BookCacheService', () => {
 
     it('get 見つかる場合', inject([BookCacheService], (service: BookCacheService) => {
       expect(service.get(testData.isbn13)).toEqual(testData);
+    }));
+
+    it('update 成功する場合', inject([BookCacheService], (service: BookCacheService) => {
+      expect(service.update(testData)).toBeTruthy();
     }));
 
   });
