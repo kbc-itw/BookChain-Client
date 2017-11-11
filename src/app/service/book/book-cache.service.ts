@@ -43,13 +43,13 @@ export class BookCacheService implements ICache<IBook> {
    * @returns 削除できたらtrue、該当データが存在しないならfalse
    */
   remove(book: IBook): boolean {
-    if (this.cachedBook[book.isbn13] !== undefined) {
-      delete this.cachedBook[book.isbn13];
-      localStorage.setItem(this.BOOK_TABLE, JSON.stringify(this.cachedBook));
-      return true;
+    if (this.cachedBook[book.isbn13] === undefined) {
+      return false;
     }
-    return false;
-  }
+    delete this.cachedBook[book.isbn13];
+    localStorage.setItem(this.BOOK_TABLE, JSON.stringify(this.cachedBook));
+    return true;
+}
 
   /**
    * キャッシュから書籍データを取得する
