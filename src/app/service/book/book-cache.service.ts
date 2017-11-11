@@ -12,7 +12,7 @@ import { IBook } from '../../model/book/ibook';
 export class BookCacheService implements ICache<IBook> {
 
   private readonly BOOK_TABLE = 'bookchain-Angular-book';
-  readonly cachedBook: { [isbn13: string]: IBook; };
+  private readonly cachedBook: { [isbn13: string]: IBook; };
 
   constructor() {
     // localStorageに格納していた書籍データ群をメモリ上に読み込み
