@@ -1,6 +1,7 @@
 
 /**
  * キャッシュ層用のインタフェース
+ * 格納されるオブジェクトは自身を識別する一意な値をもっている必要がある
  * @author kbc14a12
  * @param E キャッシュするオブジェクト
  */
@@ -21,18 +22,17 @@ export interface ICache<E> {
 
   /**
    * キャッシュからオブジェクトを取得する
-   * @param query 取得したいオブジェクトを検索するクエリ
-   * @returns クエリに対応するオブジェクトがある場合そのオブジェクトの配列。なければ空配列
+   * @param id 取得したいオブジェクトを取得するための一意な値
+   * @returns クエリに対応するオブジェクトがある場合そのオブジェクト。なければnull
    */
-  get(query: string): E[];
+  get(id: string): E;
 
   /**
    * キャッシュのオブジェクトを更新する
-   * @param query 取得したいオブジェクトを検索するクエリ
-   * @param value 更新後のオブジェクト
-   * @returns クエリに対応するオブジェクトがある場合true。なければfalse
+   * @param value 更新したいオブジェクト。オブジェクトに含まれる一意な値は同一である必要がある
+   * @returns オブジェクトがある場合true。なければfalse
    */
-  update(query: string, value: E): boolean;
+  update(value: E): boolean;
 
   /**
    * キャッシュをクリアする
