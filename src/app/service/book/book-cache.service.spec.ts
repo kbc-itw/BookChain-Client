@@ -44,16 +44,18 @@ describe('BookCacheService', () => {
   }));
 
   it('add 成功する場合', inject([BookCacheService], (service: BookCacheService) => {
-    fakeStorage = {'bookchain-Angular-book': {} };
-
-    expect(service.add(testData)).toEqual(true);
+    expect(service.add(testData)).toBeTruthy();
     expect(service.cachedBook['9784062639149']).toEqual(testData);
   }));
 
   it('remove 失敗する場合', inject([BookCacheService], (service: BookCacheService) => {
-    fakeStorage = {'bookchain-Angular-book': {} };
-    expect(service.remove(testData)).toEqual(false);
+    expect(service.remove(testData)).toBeFalsy();
   }));
+
+  it('get 見つからない場合', inject([BookCacheService], (service: BookCacheService) => {
+    expect(service.get(testData.isbn13)).toBeNull();
+  }));
+
 
   describe('ストレージあり', () => {
     beforeEach(() => {
@@ -73,13 +75,17 @@ describe('BookCacheService', () => {
     });
 
     it('add 失敗する場合', inject([BookCacheService], (service: BookCacheService) => {
-      expect(service.add(testData)).toEqual(false);
+      expect(service.add(testData)).toBeFalsy();
       expect(service.cachedBook['9784062639149']).toEqual(testData);
     }));
 
     it('remove 成功する場合', inject([BookCacheService], (service: BookCacheService) => {
-      expect(service.remove(testData)).toEqual(true);
-      expect(service.cachedBook['9784062639149']).toEqual(undefined);
+      expect(service.remove(testData)).toBeTruthy(true);
+      expect(service.cachedBook['9784062639149']).toBeUndefined();
+    }));
+
+    it('get 見つかる場合', inject([BookCacheService], (service: BookCacheService) => {
+      expect(service.get(testData.isbn13)).toEqual(testData);
     }));
 
   });

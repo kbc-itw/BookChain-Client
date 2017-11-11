@@ -4,7 +4,8 @@ import { IBook } from '../../model/book/ibook';
 
 /**
  * 書籍情報のキャッシュ層
- * localStorageを内部で使用する
+ * ISBN13を利用してデータを識別する
+ * localStorageを使用する
  * @author kbc14a12
  */
 @Injectable()
@@ -50,10 +51,16 @@ export class BookCacheService implements ICache<IBook> {
     return false;
   }
 
-  get(isbn13: string): IBook[] {
-    throw new Error("Method not implemented.");
+  /**
+   * キャッシュから書籍データを取得する
+   * @param isbn13 取得したい書籍データのisbn13コード
+   * @returns isbn13コードに対応する書籍データ。なければnull
+   */
+  get(isbn13: string): IBook {
+    return this.cachedBook[isbn13] || null;
   }
-  update(isbn13: string, book: IBook): boolean {
+
+  update(book: IBook): boolean {
     throw new Error("Method not implemented.");
   }
   clear(): void {
