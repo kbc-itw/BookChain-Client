@@ -16,20 +16,20 @@ describe('BookCacheService', () => {
       providers: [BookCacheService]
     });
 
-    // ƒ_ƒ~[–{‚Æƒ_ƒ~[ƒ[ƒJƒ‹ƒXƒgƒŒ[ƒW‚Ì—pˆÓ
+    // ãƒ€ãƒŸãƒ¼æœ¬ã¨ãƒ€ãƒŸãƒ¼ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã®ç”¨æ„
     testData =  {
       id:            'm2BpPQAACAAJ',
       isbn10:        '4062639149',
       isbn13:        '9784062639149',
-      title:         '“V‹ó‚Ì–I',
-      authors:       ['“Œ–ìŒ\Œá'],
+      title:         'å¤©ç©ºã®èœ‚',
+      authors:       ['æ±é‡Žåœ­å¾'],
       publishedDate: '1998',
       thumbnailURL:  'http://books.google.com/books/content?id=m2BpPQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
     };
 
     fakeStorage = {'bookchain-Angular-book': {} };
 
-    // ƒ[ƒJƒ‹ƒXƒgƒŒ[ƒW‚Ì’u‚«Š·‚¦
+    // ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã®ç½®ãæ›ãˆ
     getItemSpy = spyOn(localStorage, 'getItem').and.callFake((key) =>  {
       return JSON.stringify(fakeStorage[key]);
     });
@@ -39,18 +39,23 @@ describe('BookCacheService', () => {
 
   });
 
-  it('ƒCƒ“ƒXƒ^ƒ“ƒX¶¬', inject([BookCacheService], (service: BookCacheService) => {
+  it('ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ', inject([BookCacheService], (service: BookCacheService) => {
     expect(service).toBeTruthy();
   }));
 
-  it('add ¬Œ÷‚·‚éê‡', inject([BookCacheService], (service: BookCacheService) => {
+  it('add æˆåŠŸã™ã‚‹å ´åˆ', inject([BookCacheService], (service: BookCacheService) => {
     fakeStorage = {'bookchain-Angular-book': {} };
 
     expect(service.add(testData)).toEqual(true);
     expect(service.cachedBook['9784062639149']).toEqual(testData);
   }));
 
-  describe('ƒXƒgƒŒ[ƒW‚ ‚è', () => {
+  it('remove å¤±æ•—ã™ã‚‹å ´åˆ', inject([BookCacheService], (service: BookCacheService) => {
+    fakeStorage = {'bookchain-Angular-book': {} };
+    expect(service.remove(testData)).toEqual(false);
+  }));
+
+  describe('ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‚ã‚Š', () => {
     beforeEach(() => {
       fakeStorage = {
         'bookchain-Angular-book': {
@@ -58,8 +63,8 @@ describe('BookCacheService', () => {
             id: 'm2BpPQAACAAJ',
             isbn10: '4062639149',
             isbn13: '9784062639149',
-            title: '“V‹ó‚Ì–I',
-            authors: ['“Œ–ìŒ\Œá'],
+            title: 'å¤©ç©ºã®èœ‚',
+            authors: ['æ±é‡Žåœ­å¾'],
             publishedDate: '1998',
             thumbnailURL: 'http://books.google.com/books/content?id=m2BpPQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
           }
@@ -67,9 +72,14 @@ describe('BookCacheService', () => {
       };
     });
 
-    it('add Ž¸”s‚·‚éê‡', inject([BookCacheService], (service: BookCacheService) => {
+    it('add å¤±æ•—ã™ã‚‹å ´åˆ', inject([BookCacheService], (service: BookCacheService) => {
       expect(service.add(testData)).toEqual(false);
       expect(service.cachedBook['9784062639149']).toEqual(testData);
+    }));
+
+    it('remove æˆåŠŸã™ã‚‹å ´åˆ', inject([BookCacheService], (service: BookCacheService) => {
+      expect(service.remove(testData)).toEqual(true);
+      expect(service.cachedBook['9784062639149']).toEqual(undefined);
     }));
 
   });

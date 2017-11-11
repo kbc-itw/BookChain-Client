@@ -19,7 +19,7 @@ export class BookCacheService implements ICache<IBook> {
       // ないなら作っておく
       localStorage.setItem(this.BOOK_TABLE, '{}' );
     }
-    this.cachedBook = JSON.parse(localStorage.getItem(this.BOOK_TABLE)) || {};
+    this.cachedBook = JSON.parse(localStorage.getItem(this.BOOK_TABLE));
   }
 
  /**
@@ -35,9 +35,21 @@ export class BookCacheService implements ICache<IBook> {
     }
     return false;
   }
+
+  /**
+   * キャッシュの書籍データを削除する
+   * @param book 削除したい書籍データ
+   * @returns 削除できたらtrue、該当データが存在しないならfalse
+   */
   remove(book: IBook): boolean {
-    throw new Error("Method not implemented.");
+    if (this.cachedBook[book.isbn13] !== undefined) {
+      delete this.cachedBook[book.isbn13];
+      localStorage.setItem(this.BOOK_TABLE, JSON.stringify(this.cachedBook));
+      return true;
+    }
+    return false;
   }
+
   get(isbn13: string): IBook[] {
     throw new Error("Method not implemented.");
   }
