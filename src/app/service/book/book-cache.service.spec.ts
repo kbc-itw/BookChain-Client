@@ -95,6 +95,11 @@ describe('BookCacheService', () => {
       expect(service.update(testData)).toBeTruthy();
     }));
 
+    it('clear', inject([BookCacheService], (service: BookCacheService) => {
+      service.clear();
+      expect(fakeStorage['bookchain-Angular-book']).toEqual({});
+    }));
+
   });
 
 });

@@ -72,10 +72,19 @@ export class BookCacheService implements ICache<IBook> {
     localStorage.setItem(this.BOOK_TABLE, JSON.stringify(this.cachedBook));
     return true;
   }
-  
+
+  /**
+   * キャッシュをクリアする
+   */
   clear(): void {
-    throw new Error("Method not implemented.");
+    for (const key in this.cachedBook) {
+      if (this.cachedBook.hasOwnProperty(key)) {
+        delete this.cachedBook[key];
+      }
+    }
+    localStorage.setItem(this.BOOK_TABLE, JSON.stringify(this.cachedBook));
   }
+
   getAll(): IBook[] {
     throw new Error("Method not implemented.");
   }
