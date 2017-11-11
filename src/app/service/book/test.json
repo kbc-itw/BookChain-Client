@@ -1,0 +1,92 @@
+{
+  "success": {
+    "kind": "books#volumes",
+    "totalItems": 1,
+    "items": [
+    {
+      "kind": "books#volume",
+      "id": "wYnNsgEACAAJ",
+      "etag": "pFto6Dz1szA",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/wYnNsgEACAAJ",
+      "volumeInfo": {
+      "title": "天空の蜂",
+      "authors": [
+        "東野圭吾"
+      ],
+      "publishedDate": "2015-06-16",
+      "description": "巨大ヘリを奪った犯人の標的は原発。要求は日本全土の原発廃棄。果たして政府が下す決断とは。",
+      "industryIdentifiers": [
+        {
+        "type": "ISBN_10",
+        "identifier": "4062194074"
+        },
+        {
+        "type": "ISBN_13",
+        "identifier": "9784062194075"
+        }
+      ],
+      "readingModes": {
+        "text": false,
+        "image": false
+      },
+      "pageCount": 490,
+      "printType": "BOOK",
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": false,
+      "contentVersion": "preview-1.0.0",
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=wYnNsgEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=wYnNsgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+      },
+      "language": "ja",
+      "previewLink": "http://books.google.co.jp/books?id=wYnNsgEACAAJ&dq=intitle:%E5%A4%A9%E7%A9%BA%E3%81%AE%E8%9C%82+inauthor:%E6%9D%B1%E9%87%8E%E5%9C%AD%E5%90%BE&hl=&cd=1&source=gbs_api",
+      "infoLink": "http://books.google.co.jp/books?id=wYnNsgEACAAJ&dq=intitle:%E5%A4%A9%E7%A9%BA%E3%81%AE%E8%9C%82+inauthor:%E6%9D%B1%E9%87%8E%E5%9C%AD%E5%90%BE&hl=&source=gbs_api",
+      "canonicalVolumeLink": "https://books.google.com/books/about/%E5%A4%A9%E7%A9%BA%E3%81%AE%E8%9C%82.html?hl=&id=wYnNsgEACAAJ"
+      },
+      "saleInfo": {
+      "country": "JP",
+      "saleability": "NOT_FOR_SALE",
+      "isEbook": false
+      },
+      "accessInfo": {
+      "country": "JP",
+      "viewability": "NO_PAGES",
+      "embeddable": false,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+        "isAvailable": false
+      },
+      "pdf": {
+        "isAvailable": false
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=wYnNsgEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+      "accessViewStatus": "NONE",
+      "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+      "textSnippet": "巨大ヘリを奪った犯人の標的は原発。要求は日本全土の原発廃棄。果たして政府が下す決断とは。"
+      }
+    }
+    ]
+  },
+  "noResult": {
+   "kind": "books#volumes",
+   "totalItems": 0
+  },
+  "error": {
+    "error": {
+     "errors": [
+      {
+       "domain": "global",
+       "reason": "required",
+       "message": "Required parameter: q",
+       "locationType": "parameter",
+       "location": "q"
+      }
+     ],
+     "code": 400,
+     "message": "Required parameter: q"
+    }
+   }
+}
