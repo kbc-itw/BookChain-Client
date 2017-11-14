@@ -15,12 +15,16 @@ export class BookCacheService implements ICache<IBook> {
   private readonly cachedBook: { [isbn13: string]: IBook; };
 
   constructor() {
-    // localStorageに格納していた書籍データ群をメモリ上に読み込み
+    // LocalStrage上からメモリに読み込んでおく
+    // LocalStrage上になければ作っておく
     if (!localStorage.getItem(this.BOOK_TABLE)) {
       // ないなら作っておく
       localStorage.setItem(this.BOOK_TABLE, '{}' );
     }
-    this.cachedBook = JSON.parse(localStorage.getItem(this.BOOK_TABLE));
+    const existedCache = localStorage.getItem(this.BOOK_TABLE);
+    if (existedCache) {
+      this.cachedBook = JSON.parse(existedCache);
+    }
   }
 
  /**

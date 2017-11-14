@@ -59,7 +59,7 @@ export class GoogleBooksApisGatewayService {
    * @throws queryが空の場合
    * @returns クエリを含む、通信先URL
    */
-  public getRequestUrl(query) {
+  public getRequestUrl(query: string): string {
     if (query === '') {
       throw new Error('Query is empty');
     }
