@@ -29,7 +29,7 @@ export class GoogleBooksApisGatewayService {
     return this.http.get<RawItems>(url)
       // Observable<RawItems>->IBook[]、その後margeMapによりObservable<IBook>に変換
       .mergeMap(rawItems => {
-        if (rawItems.error !== undefined) {
+        if (typeof rawItems.error !== 'undefined') {
           throw new Error('Error Returned');
         }
         if (rawItems.totalItems === 0) {

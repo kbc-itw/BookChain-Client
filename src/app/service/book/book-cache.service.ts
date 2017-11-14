@@ -29,7 +29,7 @@ export class BookCacheService implements ICache<IBook> {
    * @returns 新規格納できたらtrue、既に格納済みのオブジェクトならfalse
    */
   add(book: IBook): boolean {
-    if (this.cachedBook[book.isbn13] === undefined) {
+    if (typeof this.cachedBook[book.isbn13] === 'undefined') {
       this.cachedBook[book.isbn13] = book;
       localStorage.setItem(this.BOOK_TABLE, JSON.stringify(this.cachedBook));
       return true;
@@ -43,7 +43,7 @@ export class BookCacheService implements ICache<IBook> {
    * @returns 削除できたらtrue、該当データが存在しないならfalse
    */
   remove(book: IBook): boolean {
-    if (this.cachedBook[book.isbn13] === undefined) {
+    if (typeof this.cachedBook[book.isbn13] === 'undefined') {
       return false;
     }
     delete this.cachedBook[book.isbn13];
@@ -65,7 +65,7 @@ export class BookCacheService implements ICache<IBook> {
    * @return 更新できたらtrue、 該当データが存在しないならfalse
    */
   update(book: IBook): boolean {
-    if (this.cachedBook[book.isbn13] === undefined) {
+    if (typeof this.cachedBook[book.isbn13] === 'undefined') {
       return false;
     }
     this.cachedBook[book.isbn13] = book;
