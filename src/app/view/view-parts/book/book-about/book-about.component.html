@@ -1,3 +1,14 @@
-<p>
-  book-about works!
-</p>
+<table>
+  <tr>
+    <td>タイトル</td>
+    <td>{{book.title}}</td>
+  </tr>
+  <tr>
+    <td>著者</td>
+    <td>{{book.authors[0]}}<span ngif="authors.length > 0">など</span></td>
+  </tr>
+  <tr>
+    <td>出版日</td>
+    <td>{{book.publishedDate}}</td>
+  </tr>
+</table>
