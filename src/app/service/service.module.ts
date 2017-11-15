@@ -11,6 +11,6 @@ import { BookGateway } from './book/book-gateway';
     CommonModule
   ],
   declarations: [],
-  providers: [BookService, {provide: BookGateway, useClass: GoogleBooksApisGatewayService}, {provide: Cache, useClass: BookCacheService}]
+  providers: [BookService, GoogleBooksApisGatewayService, BookCacheService]
 })
 export class ServiceModule { }
