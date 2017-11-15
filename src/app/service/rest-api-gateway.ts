@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
  * @author kbc14a12
  * @param E 取得する情報を示す型
  */
-export interface IRestApiGateway<E> {
+export abstract class RestApiGateway<E> {
 
   /**
    * HTTPのgetメソッド

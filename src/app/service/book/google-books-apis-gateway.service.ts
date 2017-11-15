@@ -1,9 +1,10 @@
-import { IBookGateway } from './ibook-gateway';
+import { BookGateway } from './book-gateway';
 import { HttpClient } from '@angular/common/http';
 import { IBook } from '../../model/book/ibook';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
+import { RestApiGateway } from '../rest-api-gateway';
 
 
 /**
@@ -11,12 +12,12 @@ import 'rxjs/add/operator/mergeMap';
  * @author kbc14a12
  */
 @Injectable()
-export class GoogleBooksApisGatewayService {
+export class GoogleBooksApisGatewayService extends BookGateway {
 
   /**
   * @param http AngularにDIされるHttpClient
   */
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { super(); }
 
   /**
    * Google Books APIsにgetメソッドで通信する。

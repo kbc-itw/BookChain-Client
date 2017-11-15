@@ -1,4 +1,4 @@
-import { ICache } from './../i-cache';
+import { Cache } from './../cache';
 import { Injectable } from '@angular/core';
 import { IBook } from '../../model/book/ibook';
 
@@ -9,12 +9,13 @@ import { IBook } from '../../model/book/ibook';
  * @author kbc14a12
  */
 @Injectable()
-export class BookCacheService implements ICache<IBook> {
+export class BookCacheService extends Cache<IBook> {
 
   private readonly BOOK_TABLE = 'bookchain-Angular-book';
   private readonly cachedBook: { [isbn13: string]: IBook; };
 
   constructor() {
+    super();
     // LocalStrage上からメモリに読み込んでおく
     // LocalStrage上になければ作っておく
     if (!localStorage.getItem(this.BOOK_TABLE)) {
