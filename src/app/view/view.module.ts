@@ -7,6 +7,7 @@ import { ViewPartsModule } from './view-parts/view-parts.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OverviewComponent } from './overview/overview.component';
+import { BookRegisterFileUploadComponent } from './book-register/book-register-file-upload/book-register-file-upload.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { OverviewComponent } from './overview/overview.component';
     material.MatButtonModule,
     material.MatExpansionModule
   ],
-  declarations: [DashboardComponent, OverviewComponent],
+  declarations: [DashboardComponent, OverviewComponent, BookRegisterFileUploadComponent],
   exports: [OverviewComponent]
 })
 export class ViewModule { }
