@@ -5,6 +5,7 @@ import * as material from '@angular/material';
 import { HeaderComponent } from './header/header.component';
 import { NotImplementedDirective, NotImplementedDialogComponent } from './not-implemented/not-implemented.directive';
 import { BookAboutComponent } from './book/book-about/book-about.component';
+import { BookDetailComponent } from './book/book-detail/book-detail.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import { BookAboutComponent } from './book/book-about/book-about.component';
     material.MatDialogModule
   ],
   entryComponents: [NotImplementedDialogComponent],
-  declarations: [HeaderComponent, NotImplementedDirective, NotImplementedDialogComponent, BookAboutComponent],
+  declarations: [HeaderComponent, NotImplementedDirective, NotImplementedDialogComponent, BookAboutComponent, BookDetailComponent],
   exports: [ HeaderComponent, NotImplementedDirective ]
 })
 export class ViewPartsModule { }
