@@ -4,8 +4,12 @@
     <td>{{book.title}}</td>
   </tr>
   <tr>
+    <td>サムネイル</td>
+    <td><img src="{{book.thumbnailURL}}"></td>
+  </tr>
+  <tr>
     <td>著者</td>
-    <td>{{book.authors[0]}}<span ngif="authors.length > 0">など</span></td>
+    <td>{{authors}}</td>
   </tr>
   <tr>
     <td>出版日</td>
