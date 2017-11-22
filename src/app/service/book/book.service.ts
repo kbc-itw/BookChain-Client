@@ -37,7 +37,7 @@ export class BookService {
       Observable.of(cachedBook);
     }
 
-    this.api.get({isbn: isbn13})
+    return this.api.get({isbn: isbn13})
       .first()
       // mapをこのように利用するべきではないと思う
       .map(book => {this.cache.add(book); return book; });
