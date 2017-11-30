@@ -8,9 +8,9 @@ describe('ProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ]
+      declarations: [ProfileComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +19,16 @@ describe('ProfileComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('インスタンス生成', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('ユーザーのダミーを取得できているかのテスト', () => {
+    expect(component.getUser).toEqual({
+      locator: "huruikagi@kbc-itw.net",
+      host: "kbc-itw.net",
+      id: "huruikagi",
+      name: "ふるいかぎ"
+    });
   });
 });

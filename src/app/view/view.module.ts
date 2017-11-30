@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { OverviewComponent } from './overview/overview.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserService } from '../service/user.service';
+import { UserDetailComponent } from './view-parts/user-detail/user-detail.component';
 
 @NgModule({
   imports: [

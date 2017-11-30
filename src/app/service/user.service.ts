@@ -21,6 +21,6 @@ export class UserService {
       host: "kbc-itw.net",
       id: "huruikagi",
       name: "ふるいかぎ"
-    }
+    };
   }
 }

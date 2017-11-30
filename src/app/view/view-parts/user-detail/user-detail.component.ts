@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IUser } from '../../../model/i-user';
-import { Input } from '@angular/core/src/metadata/directives';
-import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'bookchain-user-detail',
@@ -10,17 +8,13 @@ import { UserService } from '../../../service/user.service';
   // encapsulation: ViewEncapsulation.None
 })
 export class UserDetailComponent implements OnInit {
-  @Input()
-  private user: IUser;
-  private userservise: UserService;
+  @Input() user: IUser;
 
 
   constructor() {
-    this.userservise = new UserService();
   }
 
   ngOnInit() {
-    this.user = this.userservise.getLoginUser();
   }
 
 }
