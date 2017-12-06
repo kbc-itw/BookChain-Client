@@ -95,8 +95,7 @@ export class TransactionComponent implements OnInit {
 
   private confirmProposal(event: any): void {
     const data = JSON.stringify({
-      action: 'RESPONSE_PROPOSAL',
-      data: true
+      action: 'APPROVE_PROPOSAL',
     });
     this.webSocket.send(data);
   }
