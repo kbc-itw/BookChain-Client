@@ -17,10 +17,10 @@ export class UserService {
    */
   public getLoginUser(): IUser {
     return {
-      locator: "huruikagi@kbc-itw.net",
-      host: "kbc-itw.net",
-      id: "huruikagi",
-      name: "ふるいかぎ"
+      locator: 'huruikagi@kbc-itw.net',
+      host: 'kbc-itw.net',
+      id: 'huruikagi',
+      name: 'ふるいかぎ'
     };
   }
 }

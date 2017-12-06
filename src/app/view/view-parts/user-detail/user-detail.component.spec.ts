@@ -8,14 +8,20 @@ describe('UserDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserDetailComponent ]
+      declarations: [UserDetailComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UserDetailComponent);
     component = fixture.componentInstance;
+    component.user = {
+      locator: 'huruikagi@kbc-itw.net',
+      host: 'kbc-itw.net',
+      id: 'huruikagi',
+      name: 'ふるいかぎ'
+    }
     fixture.detectChanges();
   });
 

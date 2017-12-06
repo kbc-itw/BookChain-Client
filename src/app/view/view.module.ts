@@ -17,8 +17,7 @@ import { UserDetailComponent } from './view-parts/user-detail/user-detail.compon
     ViewRoutingModule,
     ViewPartsModule,
     material.MatButtonModule,
-    material.MatExpansionModule,
-    UserService
+    material.MatExpansionModule
   ],
   declarations: [DashboardComponent, OverviewComponent, ProfileComponent],
   exports: [OverviewComponent]

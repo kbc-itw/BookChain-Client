@@ -12,20 +12,9 @@ import { UserDetailComponent } from '../view-parts/user-detail/user-detail.compo
 export class ProfileComponent implements OnInit {
   private loginUser: IUser;
 
-  constructor(private userservice: UserService,
-    private userDetailComponent: UserDetailComponent) { }
+  constructor(private userservice: UserService) { }
 
   ngOnInit() {
     this.loginUser = this.userservice.getLoginUser();
-  }
-
-  // テスト用メソッド
-  public getUser(): IUser {
-    return this.loginUser;
-  }
-
-  // ダミーデータを渡す
-  public passUser() {
-    this.userDetailComponent.inputUser(this.loginUser);
   }
 }
