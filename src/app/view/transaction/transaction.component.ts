@@ -101,7 +101,10 @@ export class TransactionComponent implements OnInit {
   }
 
   private cancel(event: any): void {
-    // TODO
+    const data = JSON.stringify({
+      action: 'CANCEL_REQUEST'
+    });
+    this.webSocket.send(data);
   }
 }
 
