@@ -13,7 +13,7 @@ export class UserService implements RestApiGateway<IUser> {
    * @param param getメソッドパラメタとなる連想配列
    * @returns 取得した情報が流れるObservable
    */
-  get?(params: {[key: string]: string}): Observable<IUser> {
+  get(params: {[key: string]: string}): Observable<IUser> {
     const id = 'huruikagi';
     const locator = 'huruikagi@localhost';
     if (isLocator(locator) && isID(id)) {
@@ -27,7 +27,7 @@ export class UserService implements RestApiGateway<IUser> {
 
   }
 
-  private getLoginUser(): Observable<IUser> {
+  getLoginUser(): Observable<IUser> {
     const id = 'tomo_space';
     const locator = id + '@' + 'localhost';
     if (isLocator(locator) && isID(id)) {
