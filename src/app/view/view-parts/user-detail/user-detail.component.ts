@@ -17,4 +17,8 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() {
   }
 
+  public inputUser(user: IUser) {
+    this.user = user;
+  }
+
 }

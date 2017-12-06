@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { IUser } from '../../model/i-user';
+import { UserDetailComponent } from '../view-parts/user-detail/user-detail.component';
 
 @Component({
   selector: 'bookchain-profile',
@@ -11,7 +12,8 @@ import { IUser } from '../../model/i-user';
 export class ProfileComponent implements OnInit {
   private loginUser: IUser;
 
-  constructor(private userservice: UserService) { }
+  constructor(private userservice: UserService,
+    private userDetailComponent: UserDetailComponent) { }
 
   ngOnInit() {
     this.loginUser = this.userservice.getLoginUser();
@@ -22,4 +24,8 @@ export class ProfileComponent implements OnInit {
     return this.loginUser;
   }
 
+  // ダミーデータを渡す
+  public passUser() {
+    this.userDetailComponent.inputUser(this.loginUser);
+  }
 }
