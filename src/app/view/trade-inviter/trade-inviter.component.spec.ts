@@ -1,20 +1,19 @@
+import { TradeInviterComponent } from './../trade-inviter/trade-inviter.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TransactionComponent } from './transaction.component';
-
-describe('TransactionComponent', () => {
-  let component: TransactionComponent;
-  let fixture: ComponentFixture<TransactionComponent>;
+describe('TradeInviterComponent', () => {
+  let component: TradeInviterComponent;
+  let fixture: ComponentFixture<TradeInviterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransactionComponent ]
+      declarations: [ TradeInviterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TransactionComponent);
+    fixture = TestBed.createComponent(TradeInviterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

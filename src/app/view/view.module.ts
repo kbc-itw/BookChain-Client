@@ -7,7 +7,7 @@ import { ViewPartsModule } from './view-parts/view-parts.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OverviewComponent } from './overview/overview.component';
-import { TransactionComponent } from './transaction/transaction.component';
+import { TradeInviterComponent } from './trade-inviter/trade-inviter.component';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { TransactionComponent } from './transaction/transaction.component';
     material.MatButtonModule,
     material.MatExpansionModule
   ],
-  declarations: [DashboardComponent, OverviewComponent, TransactionComponent],
+  declarations: [DashboardComponent, OverviewComponent, TradeInviterComponent],
   exports: [OverviewComponent]
 })
 export class ViewModule { }

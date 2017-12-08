@@ -6,16 +6,20 @@ import { HttpClient } from '@angular/common/http/src/client';
 import * as QRCode from 'qrcode';
 import { IUser } from '../../model/user/iuser';
 import { IBook } from '../../model/book/ibook';
+import { ActivatedRoute } from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/zip';
+
 @Component({
-  selector: 'bookchain-transaction',
-  templateUrl: './transaction.component.html',
-  styleUrls: ['./transaction.component.sass'],
+  selector: 'bookchain-trade-inviter',
+  templateUrl: './trade-inviter.component.html',
+  styleUrls: ['./trade-inviter.component.sass'],
   // encapsulation: ViewEncapsulation.None
 })
 /**
  * @author kbc14a12
  */
-export class TransactionComponent implements OnInit {
+export class TradeInviterComponent implements OnInit {
 
   private qrCodeDataUri: string;
   private webSocket: WebSocket;
@@ -24,17 +28,23 @@ export class TransactionComponent implements OnInit {
   private user: IUser;
   private partner: IUser;
   private book: IBook;
+  private purpose: string;
 
   constructor(private http: HttpClient, private userService: UserService,
-     private tradingService: TradingService, private bookService: BookService) { }
+     private tradingService: TradingService, private bookService: BookService, private route: ActivatedRoute) { }
 
   // TODO パスでpurposeフィールド切り分け
   // TODO サーバ名
   ngOnInit() {
-    this.userService.getLoginUser()
-      .flatMap(user => {
-        this.user = user;
-        return this.http.post<RoomInfo>('dummyServer/room?purpose=rental&inviter=' + user.locator, {});
+    Observable
+      .zip(
+        this.userService.getLoginUser(),
+        this.route.queryParams
+      ).first()
+      .flatMap(userRoute => {
+        this.user = userRoute[0];
+        this.purpose = userRoute[1].purpose;
+        return this.http.post<RoomInfo>('dummyServer/room?purpose=' + this.purpose + '&inviter=' + this.user.locator, {});
       })
       .subscribe(roomInfo => {
         const qrCodeJsonString = JSON.stringify({
@@ -65,6 +75,15 @@ export class TransactionComponent implements OnInit {
                 break;
               case 'COMMITED':
                 this.showProposal(wsEvent);
+                break;
+              case 'ROOM_CLOSED':
+                this.cancel(wsEvent);
+                break;
+              case 'TRANSACTION_CANCELED':
+                this.cancel(wsEvent);
+                break;
+              case 'INVALID_ACTION':
+                this.cancel(wsEvent);
                 break;
             }
           };
@@ -105,6 +124,7 @@ export class TransactionComponent implements OnInit {
       action: 'CANCEL_REQUEST'
     });
     this.webSocket.send(data);
+    this.webSocket.close();
   }
 }
 
