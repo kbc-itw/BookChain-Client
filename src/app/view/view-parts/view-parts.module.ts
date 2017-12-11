@@ -15,6 +15,6 @@ import { BookDetailComponent } from './book/book-detail/book-detail.component';
   ],
   entryComponents: [NotImplementedDialogComponent],
   declarations: [HeaderComponent, NotImplementedDirective, NotImplementedDialogComponent, BookAboutComponent, BookDetailComponent],
-  exports: [ HeaderComponent, NotImplementedDirective ]
+  exports: [ HeaderComponent, NotImplementedDirective, BookAboutComponent, BookDetailComponent ]
 })
 export class ViewPartsModule { }
