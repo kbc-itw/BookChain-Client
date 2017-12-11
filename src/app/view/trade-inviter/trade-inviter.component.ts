@@ -74,13 +74,13 @@ export class TradeInviterComponent implements OnInit {
                 this.showProposal(wsEvent);
                 break;
               case 'COMMITED':
-                this.showProposal(wsEvent);
+                this.transactionComitted(wsEvent);
                 break;
               case 'ROOM_CLOSED':
                 this.cancel(wsEvent);
                 break;
               case 'TRANSACTION_CANCELED':
-                this.cancel(wsEvent);
+                this.receiveCancel(wsEvent);
                 break;
               case 'INVALID_ACTION':
                 this.cancel(wsEvent);
@@ -110,6 +110,11 @@ export class TradeInviterComponent implements OnInit {
 
   private transactionComitted(wsEvent: WebSocketEvent): void {
     // 何させよう……
+  }
+
+  private receiveCancel(wsEvent: WebSocketEvent): void {
+    const payload = wsEvent.data;
+    window.alert(payload);
   }
 
   private confirmProposal(event: any): void {
