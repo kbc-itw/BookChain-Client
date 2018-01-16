@@ -2,13 +2,13 @@ import { BookService } from './../../service/book/book.service';
 import { TradingService } from './../../service/trading/trading.service';
 import { UserService } from './../../service/user/user.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http/src/client';
 import * as QRCode from 'qrcode';
 import { IUser } from '../../model/user/iuser';
 import { IBook } from '../../model/book/ibook';
 import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/zip';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'bookchain-trade-inviter',
@@ -51,7 +51,7 @@ export class TradeInviterComponent implements OnInit {
           id: roomInfo.room.id,
           inviteToken: roomInfo.inviteToken
         });
-        QRCode.toDataURL(qrCodeJsonString, {type: 'image/png'}, (err, url) => {
+        QRCode.toDataURL(qrCodeJsonString, {type: 'image/png'}, (err: Error, url: string) => {
           // TODO
           if (err) {
             return;
