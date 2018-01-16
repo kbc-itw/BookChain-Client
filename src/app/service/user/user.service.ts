@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { RestApiGateway } from '../rest-api-gateway';
 import { IUser, isLocator, isID } from '../../model/user/iuser';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/operator/add/of';
+import 'rxjs/add/Observable/of';
 
 export class UserService implements RestApiGateway<IUser> {
 
@@ -23,9 +23,10 @@ export class UserService implements RestApiGateway<IUser> {
         locator: locator,
         name: 'ふるいかぎ'
       });
-  } else {}
-
+  } else {
+    return Observable.throw(new Error('は？'));
   }
+}
 
   getLoginUser(): Observable<IUser> {
     const id = 'tomo_space';
@@ -37,7 +38,9 @@ export class UserService implements RestApiGateway<IUser> {
         locator: locator,
         name: 'ねこめ'
       });
-  } else {}
+  } else {
+    return Observable.throw(new Error('は？'));
+  }
 
   }
 }

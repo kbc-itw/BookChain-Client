@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { RestApiGateway } from '../rest-api-gateway';
 import { ITrading } from '../../model/trading/itrading';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/of';
+import 'rxjs/add/observable/of';
 import { isLocator, Locator } from '../../model/user/iuser';
 @Injectable()
 export class TradingService implements RestApiGateway<ITrading> {
@@ -25,8 +25,7 @@ export class TradingService implements RestApiGateway<ITrading> {
         lendAt: new Date('2017-11-21T03:30:29.024Z')
       });
     } else {
-      Observable.throw(new Error('ここにはこない！'));
+      return Observable.throw(new Error('ここにはこない！'));
     }
-
   }
 }
