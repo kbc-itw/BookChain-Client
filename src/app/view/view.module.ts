@@ -7,9 +7,12 @@ import { ViewPartsModule } from './view-parts/view-parts.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OverviewComponent } from './overview/overview.component';
+
+import { TradeInviterComponent } from './trade-inviter/trade-inviter.component';
 import { BookRegisterFileUploadComponent } from './book-register/book-register-file-upload/book-register-file-upload.component';
 import { ServiceModule } from '../service/service.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TradeGuestComponent } from './trade-guest/trade-guest.component';
 
 @NgModule({
   imports: [
@@ -26,7 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     material.MatTabsModule,
     material.MatProgressSpinnerModule
   ],
-  declarations: [DashboardComponent, OverviewComponent, BookRegisterFileUploadComponent],
+  declarations: [DashboardComponent, OverviewComponent, TradeInviterComponent, TradeGuestComponent, BookRegisterFileUploadComponent],
   exports: [OverviewComponent]
 })
 export class ViewModule { }
