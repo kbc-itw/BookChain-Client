@@ -4,28 +4,21 @@ import { ITrading } from '../../model/trading/itrading';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { isLocator, Locator } from '../../model/user/iuser';
+import * as queryString from 'query-string';
+import { API_BASE_URL } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+
 @Injectable()
 export class TradingService implements RestApiGateway<ITrading> {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   /**
    * 取引情報を取得する
-   * 仮置き
    */
-  get(): Observable<ITrading> {
-    const owner = 'huruikagi@localhost';
-    const borrower = 'nekome_space@localhost';
-    if (isLocator(owner) && isLocator(borrower)) {
-      return Observable.of({
-        id: 100,
-        owner: owner,
-        borrower: borrower,
-        isbn: '9784062639149',
-        lendAt: new Date('2017-11-21T03:30:29.024Z')
-      });
-    } else {
-      return Observable.throw(new Error('ここにはこない！'));
-    }
+  get(params: {[key: string]: string}): Observable<ITrading> {
+    const queries = queryString.stringify(params);
+    const targetURL = API_BASE_URL + 'trades' + ( queries === '' ? '' : '?' + queries);
+    return this.http.get<ITrading>(targetURL);
   }
 }
