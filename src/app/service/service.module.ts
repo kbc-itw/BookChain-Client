@@ -1,3 +1,4 @@
+import { OwnershipService } from './ownership/ownership.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookService } from './book/book.service';
@@ -13,6 +14,6 @@ import { TradingService } from './trading/trading.service';
     CommonModule
   ],
   declarations: [],
-  providers: [BookService, GoogleBooksApisGatewayService, BookCacheService, UserService, TradingService]
+  providers: [BookService, GoogleBooksApisGatewayService, BookCacheService, UserService, TradingService, OwnershipService]
 })
 export class ServiceModule { }
