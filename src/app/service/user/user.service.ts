@@ -3,10 +3,14 @@ import { RestApiGateway } from '../rest-api-gateway';
 import { IUser, isLocator, isID } from '../../model/user/iuser';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/Observable/of';
+import { HttpClient } from '@angular/common/http';
+import * as queryString from 'query-string';
+import { API_BASE_URL } from '../../../environments/environment';
 
+@Injectable()
 export class UserService implements RestApiGateway<IUser> {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   /**
    * HTTPのgetメソッド
@@ -14,22 +18,17 @@ export class UserService implements RestApiGateway<IUser> {
    * @returns 取得した情報が流れるObservable
    */
   get(params: {[key: string]: string}): Observable<IUser> {
-    const id = 'huruikagi';
-    const locator = 'huruikagi@localhost';
-    if (isLocator(locator) && isID(id)) {
-      return Observable.of({
-        id: id,
-        host: 'localhost',
-        locator: locator,
-        name: 'ふるいかぎ'
-      });
-  } else {
-    return Observable.throw(new Error('は？'));
-  }
+    const queries = queryString.stringify(params);
+    const targetURL = API_BASE_URL + 'user' + ( queries === '' ? '' : '?' + queries);
+    return this.http.get<IUser>(targetURL);
 }
 
+
+  /**
+   * TODO
+   */
   getLoginUser(): Observable<IUser> {
-    const id = 'tomo_space';
+    const id = 'tomo';
     const locator = id + '@' + 'localhost';
     if (isLocator(locator) && isID(id)) {
       return Observable.of({
@@ -38,9 +37,9 @@ export class UserService implements RestApiGateway<IUser> {
         locator: locator,
         name: 'ねこめ'
       });
-  } else {
-    return Observable.throw(new Error('は？'));
-  }
+    } else {
+      return Observable.throw(new Error('は？'));
+    }
 
   }
 }

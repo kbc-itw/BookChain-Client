@@ -21,7 +21,7 @@ export abstract class RestApiGateway<E> {
    * @param params postメソッドパラメタとなる連想配列
    * @returns 取得した情報が流れるObservable
    */
-  post?(param: {[key: string]: string}): Observable<E>;
+  post?(param: {[key: string]: string}): Observable<void>;
 
   /**
    * HTTPのputメソッド

@@ -27,9 +27,9 @@ export class BookRegisterFileUploadComponent implements OnInit {
   ngOnInit() {
 
     // createがオプション指定されているのでundefinedチェック
-    if (typeof Quagga.ResultCollector.create === 'undefined') {
-      throw Error('ここには来ない');
-    }
+    // if (typeof Quagga.ResultCollector.create === 'undefined') {
+    //  throw Error('ここには来ない');
+    // }
 
     // 読み取り終了時の処理を設定
     this.fileReader.onload = (progressEvent) => {

@@ -1,17 +1,17 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { UserService } from './user.service';
+import { OwnershipService } from './ownership.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('UserService', () => {
+describe('OwnershipService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UserService],
+      providers: [OwnershipService],
       imports  : [HttpClientTestingModule],
     });
   });
 
-  it('should be created', inject([UserService], (service: UserService) => {
+  it('should be created', inject([OwnershipService], (service: OwnershipService) => {
     expect(service).toBeTruthy();
   }));
 });
