@@ -10,6 +10,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserService } from '../service/user.service';
 import { UserDetailComponent } from './view-parts/user-detail/user-detail.component';
+import { OwnershipListComponent } from './ownership-list/ownership-list.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { UserDetailComponent } from './view-parts/user-detail/user-detail.compon
     material.MatButtonModule,
     material.MatExpansionModule
   ],
-  declarations: [DashboardComponent, OverviewComponent, ProfileComponent],
+  declarations: [DashboardComponent, OverviewComponent, ProfileComponent, OwnershipListComponent],
   exports: [OverviewComponent]
 })
 export class ViewModule { }

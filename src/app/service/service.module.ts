@@ -6,7 +6,7 @@ import { BookCacheService } from './book/book-cache.service';
 import { RestApiGateway } from './rest-api-gateway';
 import { BookGateway } from './book/book-gateway';
 import { UserService } from './user.service';
-import { OwnersipGatewayService } from './ownersip-gateway.service';
+import { OwnershipGatewayService } from './ownership-gateway.service';
 import { OwnershipService } from './ownership.service';
 
 @NgModule({
@@ -14,6 +14,13 @@ import { OwnershipService } from './ownership.service';
     CommonModule
   ],
   declarations: [],
-  providers: [BookService, GoogleBooksApisGatewayService, BookCacheService, UserService, OwnersipGatewayService, OwnershipService]
+  providers: [
+    BookService,
+    GoogleBooksApisGatewayService,
+    BookCacheService,
+    UserService,
+    OwnershipGatewayService,
+    OwnershipService
+  ]
 })
 export class ServiceModule { }

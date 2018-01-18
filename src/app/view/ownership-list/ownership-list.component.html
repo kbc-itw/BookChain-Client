@@ -1,0 +1,3 @@
+<div *ngFor="let book of (books$ | async) as books">
+  <bookchain-book-about [book]="book">
+</div>

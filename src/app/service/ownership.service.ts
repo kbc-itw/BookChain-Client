@@ -14,9 +14,7 @@ export class OwnershipQuery {
 		isbn?: Number,
 		limit?: Number,
 		offset?: Number
-	) {
-
-	}
+	) { }
 
 }
 
