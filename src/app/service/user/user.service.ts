@@ -28,7 +28,7 @@ export class UserService implements RestApiGateway<IUser> {
    * TODO
    */
   getLoginUser(): Observable<IUser> {
-    const id = 'tomo_space';
+    const id = 'tomo';
     const locator = id + '@' + 'localhost';
     if (isLocator(locator) && isID(id)) {
       return Observable.of({
@@ -37,9 +37,9 @@ export class UserService implements RestApiGateway<IUser> {
         locator: locator,
         name: 'ねこめ'
       });
-  } else {
-    return Observable.throw(new Error('は？'));
-  }
+    } else {
+      return Observable.throw(new Error('は？'));
+    }
 
   }
 }
