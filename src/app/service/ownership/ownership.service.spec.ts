@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { OwnershipService } from './ownership.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('OwnershipService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [OwnershipService]
+      providers: [OwnershipService],
+      imports  : [HttpClientTestingModule],
     });
   });
 
