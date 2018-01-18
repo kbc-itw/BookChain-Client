@@ -6,6 +6,8 @@ import 'rxjs/add/Observable/of';
 import { HttpClient } from '@angular/common/http';
 import * as queryString from 'query-string';
 import { API_BASE_URL } from '../../../environments/environment';
+
+@Injectable()
 export class UserService implements RestApiGateway<IUser> {
 
   constructor(private http: HttpClient) { }

@@ -5,6 +5,7 @@ import { IOwnership } from '../../model/ownership/IOwnership';
 import { Observable } from 'rxjs/Observable';
 import * as queryString from 'query-string';
 import { API_BASE_URL } from '../../../environments/environment';
+
 @Injectable()
 export class OwnershipService  implements RestApiGateway<IOwnership> {
 
