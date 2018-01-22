@@ -8,12 +8,13 @@ import { RestApiGateway } from './rest-api-gateway';
 import { BookGateway } from './book/book-gateway';
 import { UserService } from './user/user.service';
 import { TradingService } from './trading/trading.service';
+import { RoomService } from './room/room.service';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [],
-  providers: [BookService, GoogleBooksApisGatewayService, BookCacheService, UserService, TradingService, OwnershipService]
+  providers: [BookService, GoogleBooksApisGatewayService, BookCacheService, UserService, TradingService, OwnershipService, RoomService]
 })
 export class ServiceModule { }

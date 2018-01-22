@@ -8,7 +8,7 @@ import { IBook } from '../../model/book/ibook';
 import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/zip';
-import { HttpClient } from '@angular/common/http';
+import { RoomService } from '../../service/room/room.service';
 
 @Component({
   selector: 'bookchain-trade-inviter',
@@ -30,8 +30,10 @@ export class TradeInviterComponent implements OnInit {
   private book: IBook;
   private purpose: string;
 
-  constructor(private http: HttpClient, private userService: UserService,
-     private tradingService: TradingService, private bookService: BookService, private route: ActivatedRoute) { }
+  constructor(
+    private userService: UserService, private tradingService: TradingService, private bookService: BookService,
+    private roomService: RoomService, private route: ActivatedRoute
+  ) { }
 
   // TODO パスでpurposeフィールド切り分け
   // TODO サーバ名
@@ -40,11 +42,11 @@ export class TradeInviterComponent implements OnInit {
       .zip(
         this.userService.getLoginUser(),
         this.route.queryParams
-      ).first()
+      )
       .flatMap(userRoute => {
         this.user = userRoute[0];
         this.purpose = userRoute[1].purpose;
-        return this.http.post<RoomInfo>('dummyServer/room?purpose=' + this.purpose + '&inviter=' + this.user.locator, {});
+        return this.roomService.post(this.purpose, this.user.locator);
       })
       .subscribe(roomInfo => {
         const qrCodeJsonString = JSON.stringify({
@@ -131,22 +133,6 @@ export class TradeInviterComponent implements OnInit {
     this.webSocket.send(data);
     this.webSocket.close();
   }
-}
-
-
-/**
- * 取引に利用する部屋情報
- * @author kbc14a12
- */
-interface RoomInfo {
-  readonly room: {
-    host: string;
-    id: string;
-    purpose: string;
-    inviter: string;
-    createdAt: string
-  };
-  readonly inviteToken: string;
 }
 
 interface WebSocketEvent extends Event {
