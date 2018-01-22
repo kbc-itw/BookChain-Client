@@ -9,18 +9,24 @@ import { UserService } from '../../service/user/user.service';
 import { BookService } from '../../service/book/book.service';
 import { GoogleBooksApisGatewayService } from '../../service/book/google-books-apis-gateway.service';
 import { BookCacheService } from '../../service/book/book-cache.service';
-import { ActivatedRoute } from '@angular/router/src/router_state';
+import { ActivatedRoute } from '@angular/router';
+import { RoomService } from '../../service/room/room.service';
+import { Observable } from 'rxjs/Observable';
 
 describe('TradeInviterComponent', () => {
   let component: TradeInviterComponent;
   let fixture: ComponentFixture<TradeInviterComponent>;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TradeInviterComponent ],
-      imports: [ MatProgressSpinnerModule, MatTabsModule, ViewPartsModule, ReactiveFormsModule, MatFormFieldModule,
-        HttpClientTestingModule],
-      providers: [UserService, BookService, GoogleBooksApisGatewayService, BookCacheService, TradingService]
+      imports: [
+        MatProgressSpinnerModule, MatTabsModule, ViewPartsModule, ReactiveFormsModule, MatFormFieldModule,
+        HttpClientTestingModule,
+      ],
+      providers: [
+        UserService, BookService, GoogleBooksApisGatewayService, BookCacheService, TradingService,
+        RoomService, {provide: ActivatedRoute, useValue: {queryParams: Observable.of({purpose: 'rental'})}}
+      ]
     })
     .compileComponents();
   }));
@@ -31,7 +37,7 @@ describe('TradeInviterComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
