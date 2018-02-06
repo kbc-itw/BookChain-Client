@@ -13,6 +13,7 @@ import { BookRegisterFileUploadComponent } from './book-register/book-register-f
 import { ServiceModule } from '../service/service.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TradeGuestComponent } from './trade-guest/trade-guest.component';
+import { LoginComponent } from '../login/login.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,9 @@ import { TradeGuestComponent } from './trade-guest/trade-guest.component';
     material.MatTabsModule,
     material.MatProgressSpinnerModule
   ],
-  declarations: [DashboardComponent, OverviewComponent, TradeInviterComponent, TradeGuestComponent, BookRegisterFileUploadComponent],
+  declarations: [
+    DashboardComponent, OverviewComponent, TradeInviterComponent,TradeGuestComponent, BookRegisterFileUploadComponent, LoginComponent
+  ],
   exports: [OverviewComponent]
 })
 export class ViewModule { }
