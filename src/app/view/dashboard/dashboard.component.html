@@ -7,11 +7,11 @@
     <mat-expansion-panel-header>
       貸す
     </mat-expansion-panel-header>
-    <a mat-raised-button bookchainNotImplemented>
+    <a mat-raised-button routerLink="/trade/inviter?purpose=rental">
         新たに貸す
     </a>
     
-    <a mat-raised-button bookchainNotImplemented>
+    <a mat-raised-button routerLink="/trade/inviter?purpose=return">
       返してもらう
     </a>
   </mat-expansion-panel>
@@ -20,10 +20,10 @@
     <mat-expansion-panel-header>
       借りる
     </mat-expansion-panel-header>
-    <a mat-raised-button bookchainNotImplemented>
+    <a mat-raised-button routerLink="/trade/guest?purpose=rental">
       新たに借りる
     </a>
-    <a mat-raised-button bookchainNotImplemented>
+    <a mat-raised-button routerLink="/trade/guest?purpose=return">
       借りた本を返す
     </a>
   </mat-expansion-panel>
@@ -34,8 +34,8 @@
     <a mat-raised-button bookchainNotImplemented>
       プロフィール
     </a>
-    <a mat-raised-button bookchainNotImplemented>
-      本の管理
+    <a mat-raised-button routerLink="/register">
+      書籍の登録
     </a>
   </mat-expansion-panel>
 </mat-accordion>
