@@ -14,6 +14,7 @@ import { ServiceModule } from '../service/service.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TradeGuestComponent } from './trade-guest/trade-guest.component';
 import { LoginComponent } from '../login/login.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { LoginComponent } from '../login/login.component';
     material.MatProgressSpinnerModule
   ],
   declarations: [
-    DashboardComponent, OverviewComponent, TradeInviterComponent,TradeGuestComponent, BookRegisterFileUploadComponent, LoginComponent
+    DashboardComponent, OverviewComponent, TradeInviterComponent,TradeGuestComponent, BookRegisterFileUploadComponent, LoginComponent,
+    UserRegisterComponent
   ],
   exports: [OverviewComponent]
 })

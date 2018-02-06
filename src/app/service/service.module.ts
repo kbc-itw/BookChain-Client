@@ -9,12 +9,14 @@ import { BookGateway } from './book/book-gateway';
 import { UserService } from './user/user.service';
 import { TradingService } from './trading/trading.service';
 import { RoomService } from './room/room.service';
+import { UserRegisterService } from './user/user-register.service';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [],
-  providers: [BookService, GoogleBooksApisGatewayService, BookCacheService, UserService, TradingService, OwnershipService, RoomService]
+  providers: [BookService, GoogleBooksApisGatewayService, BookCacheService, UserService,
+  TradingService, OwnershipService, RoomService, UserRegisterService, UserRegisterService]
 })
 export class ServiceModule { }
