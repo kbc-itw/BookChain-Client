@@ -3,6 +3,8 @@ import Quagga from 'quagga';
 import * as ISBN from 'isbn-utils';
 import { IBook } from '../../../model/book/ibook';
 import { BookService } from '../../../service/book/book.service';
+import { OwnershipService } from '../../../service/ownership/ownership.service';
+import { UserService } from '../../../service/user/user.service';
 
 @Component({
   selector: 'bookchain-book-register-file-upload',
@@ -22,7 +24,7 @@ export class BookRegisterFileUploadComponent implements OnInit {
   @ViewChild('inputForManualRegister') manualInputISBN: ElementRef;
   @ViewChild('chooseImage') chooseImage: ElementRef;
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, private ownershipService: OwnershipService, private userService: UserService) { }
 
   ngOnInit() {
 
@@ -121,7 +123,11 @@ export class BookRegisterFileUploadComponent implements OnInit {
     if (!this.book) {
       return;
     }
-    window.alert('TODO!');
+    this.userService.getLoginUser()
+      .flatMap((user) => this.ownershipService.post({owner: user.locator, isbn: this.book.isbn13}))
+      .subscribe(() => {
+        window.alert('登録しました');
+      });
   }
 
   /**
