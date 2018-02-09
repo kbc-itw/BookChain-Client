@@ -36,8 +36,8 @@ import { UserRegisterComponent } from './user-register/user-register.component';
     material.MatProgressSpinnerModule
   ],
   declarations: [
-    DashboardComponent, OverviewComponent, TradeInviterComponent,TradeGuestComponent, BookRegisterFileUploadComponent, LoginComponent,
-    UserRegisterComponent,OwnershipListComponent,ProfileComponent
+    DashboardComponent, OverviewComponent, TradeInviterComponent, TradeGuestComponent, BookRegisterFileUploadComponent, LoginComponent,
+    UserRegisterComponent, OwnershipListComponent, ProfileComponent
   ],
   exports: [OverviewComponent]
 })
