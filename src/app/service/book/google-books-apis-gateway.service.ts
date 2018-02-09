@@ -110,6 +110,6 @@ interface RawItem {
     },
     industryIdentifiers: {
       identifier: string
-    }
+    }[]
   };
 }
