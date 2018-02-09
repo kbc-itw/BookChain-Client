@@ -1,0 +1,18 @@
+<div [ngSwitch]="state">
+  <div *ngSwitchCase="'DisplayQRCode'">
+    <p>以下のQRコードを読み込ませてください</p>
+    <img src="{{qrCodeDataUri}}" *ngIf="qrCodeDataUri" />
+  </div>
+  <div *ngSwitchCase="'DisplayReadBarcodeNotification'">
+    <p><span *ngIf="purpose === 'rental; then rental else return'"></span>書籍のバーコードを読み取らせてください</p>
+    <ng-template #rental>貸し出したい</ng-template>
+    <ng-template #return>返してほしい</ng-template>
+    <button mat-raised-button color="warn" (click)="cancel($event)">やめる</button>
+  </div>
+  <div *ngSwitchCase="'ShowProposal'">
+      <bookchain-book-detail [book]="book"></bookchain-book-detail>
+      <p>こちらでよろしいですか？</p>
+      <button mat-raised-button color="primary" (click)="confirmProposal($event)">これにする</button>
+      <button mat-raised-button color="warn" (click)="cancel($event)">やめる</button>
+  </div>
+</div>

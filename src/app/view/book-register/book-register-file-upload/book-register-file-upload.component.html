@@ -1,0 +1,27 @@
+<mat-tab-group *ngIf="!book">
+  <mat-tab label="カメラで撮影">
+    <div>
+      <p>ISBNコードをカメラで撮影します</p>
+      <input type="file" #chooseImage name="chooseImage" id="choose-img" accept="image/*" capture="camera" style="display:none;"(change)="onUpload($event)"/>
+      <button mat-raised-button  color="primary" [disabled]="uploading"  (click)="propagateToInput($event)">カメラを起動</button>
+      <mat-progress-spinner mode="indeterminate" *ngIf="uploading"></mat-progress-spinner>
+      <div *ngIf="showFailBarcodeReadDiv">バーコード読み取りに失敗しました</div>
+    </div>
+  </mat-tab>
+  <mat-tab label="直接入力">
+    <div>
+      <p>ISBNコードを自分で入力します</p>
+      <mat-form-field>
+        <input #inputForManualRegister  matInput placeholder="ISBNコードを入力" [(ngModel)]="inputISBN" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="!canSendInputISBN()" (click)="manualRegister($event)" >コードを送信</button>
+      <mat-progress-spinner mode="indeterminate" *ngIf="uploading"></mat-progress-spinner>
+      <div *ngIf="showFailInputDiv">不正なコードです</div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+<div *ngIf="book">
+  <bookchain-book-detail *ngIf="book" [book]="book"></bookchain-book-detail>
+  <button mat-raised-button color="primary" (click)="confirmRegister($event)">登録</button>
+  <button mat-raised-button color="primary" (click)="cancelRegister($event)" >再入力</button>      
+</div>

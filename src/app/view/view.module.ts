@@ -12,15 +12,33 @@ import { UserService } from '../service/user.service';
 import { UserDetailComponent } from './view-parts/user-detail/user-detail.component';
 import { OwnershipListComponent } from './ownership-list/ownership-list.component';
 
+import { TradeInviterComponent } from './trade-inviter/trade-inviter.component';
+import { BookRegisterFileUploadComponent } from './book-register/book-register-file-upload/book-register-file-upload.component';
+import { ServiceModule } from '../service/service.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TradeGuestComponent } from './trade-guest/trade-guest.component';
+import { LoginComponent } from '../login/login.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
+
 @NgModule({
   imports: [
     CommonModule,
     ViewRoutingModule,
     ViewPartsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ServiceModule,
     material.MatButtonModule,
-    material.MatExpansionModule
+    material.MatExpansionModule,
+    material.MatStepperModule,
+    material.MatInputModule,
+    material.MatTabsModule,
+    material.MatProgressSpinnerModule
   ],
-  declarations: [DashboardComponent, OverviewComponent, ProfileComponent, OwnershipListComponent],
+  declarations: [
+    DashboardComponent, OverviewComponent, TradeInviterComponent,TradeGuestComponent, BookRegisterFileUploadComponent, LoginComponent,
+    UserRegisterComponent,OwnershipListComponent,ProfileComponent
+  ],
   exports: [OverviewComponent]
 })
 export class ViewModule { }

@@ -15,7 +15,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     material.MatDialogModule
   ],
   entryComponents: [NotImplementedDialogComponent],
-  declarations: [HeaderComponent, NotImplementedDirective, NotImplementedDialogComponent, BookAboutComponent, BookDetailComponent, UserDetailComponent],
-  exports: [HeaderComponent, NotImplementedDirective, UserDetailComponent]
+
+  declarations: [HeaderComponent, NotImplementedDirective, NotImplementedDialogComponent, BookAboutComponent, BookDetailComponent],
+  exports: [ HeaderComponent, NotImplementedDirective, BookAboutComponent, BookDetailComponent, UserDetailComponent]
 })
 export class ViewPartsModule { }
