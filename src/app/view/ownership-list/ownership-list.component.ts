@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { IBook } from '../../model/book/ibook';
-import { OwnershipService } from '../../service/ownership.service';
-import { UserService } from '../../service/user.service';
+import { OwnershipService } from '../../service/ownership/ownership.service';
+import { UserService } from '../../service/user/user.service';
 import { BookService } from '../../service/book/book.service';
 
 @Component({
@@ -22,12 +22,11 @@ export class OwnershipListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // ユーザサービスからログインユーザ取得
-    const user = this.userService.getLoginUser();
+    this.books$ = this.userService
+      .getLoginUser()
+      .flatMap(user => this.ownershipService.get({owner: user.locator}))
+      .flatMap(ownership => this.bookService.getByISBN(ownership.isbn));
 
-    // ログインユーザの所持書籍を取得
-    this.books$ = this.ownershipService.get()
-      .flatMap(ownership => this.bookService.getByISBN(ownership.isbn13));
   }
 
 }

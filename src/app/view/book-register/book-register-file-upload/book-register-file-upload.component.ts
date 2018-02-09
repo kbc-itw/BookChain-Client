@@ -124,7 +124,7 @@ export class BookRegisterFileUploadComponent implements OnInit {
       return;
     }
     this.userService.getLoginUser()
-      .flatMap((user) => this.ownershipService.post({owner: user.locator, isbn: this.book.isbn13}))
+      .map((user) => this.ownershipService.post({owner: user.locator, isbn: this.book.isbn13}))
       .subscribe(() => {
         window.alert('登録しました');
       });
