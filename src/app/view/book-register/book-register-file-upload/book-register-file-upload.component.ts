@@ -120,14 +120,20 @@ export class BookRegisterFileUploadComponent implements OnInit {
    * TODO 登録ボタンを押したときの処理
    */
   private confirmRegister(event: any): void {
-    if (!this.book) {
-      return;
+    if (this.book !== null && typeof(this.book) !== 'undefined') {
+      this.userService.getLoginUser()
+        .map((user) => {
+          if (this.book) {
+            return this.ownershipService.post({
+              owner: user.locator,
+              isbn: this.book.isbn13
+            });
+          }
+        })
+        .subscribe(() => {
+          window.alert('登録しました');
+        });
     }
-    this.userService.getLoginUser()
-      .map((user) => this.ownershipService.post({owner: user.locator, isbn: this.book.isbn13}))
-      .subscribe(() => {
-        window.alert('登録しました');
-      });
   }
 
   /**
