@@ -28,18 +28,15 @@ export class UserService implements RestApiGateway<IUser> {
    * TODO
    */
   getLoginUser(): Observable<IUser> {
-    const id = 'tomo';
-    const locator = id + '@' + 'localhost';
-    if (isLocator(locator) && isID(id)) {
-      return Observable.of({
-        id: id,
-        host: 'localhost',
-        locator: locator,
-        name: 'ねこめ'
-      });
-    } else {
-      return Observable.throw(new Error('は？'));
-    }
-
+    const targetURL = API_BASE_URL + 'user/login';
+    return this.http.get<UserInfo>(targetURL)
+      .flatMap(info => this.get({ localId: info.localId }));
   }
+
+
+
+}
+interface UserInfo {
+    localId: string;
+    displayName: string;
 }
