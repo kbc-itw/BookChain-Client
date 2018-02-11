@@ -18,7 +18,7 @@ export class UserService implements RestApiGateway<IUser> {
    * @returns 取得した情報が流れるObservable
    */
   get(params: {[key: string]: string}): Observable<IUser> {
-    const queries = queryString.stringify(params);
+    const queries = queryString.stringify(params, {encode: true});
     const targetURL = API_BASE_URL + 'user' + ( queries === '' ? '' : '?' + queries);
     return this.http.get<IUser>(targetURL);
 }

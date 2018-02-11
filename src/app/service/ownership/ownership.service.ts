@@ -12,7 +12,7 @@ export class OwnershipService  implements RestApiGateway<IOwnership> {
   constructor(private http: HttpClient) { }
 
   public get(params: {[key: string]: string}): Observable<IOwnership> {
-    const queries = queryString.stringify(params);
+    const queries = queryString.stringify(params, {encode: true});
     const targetURL = API_BASE_URL + 'ownership' + ( queries === '' ? '' : '?' + queries);
     return this.http.get<IOwnership>(targetURL);
   }
