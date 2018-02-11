@@ -16,7 +16,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
   ],
   entryComponents: [NotImplementedDialogComponent],
 
-  declarations: [HeaderComponent, NotImplementedDirective, NotImplementedDialogComponent, BookAboutComponent, BookDetailComponent],
+  declarations: [HeaderComponent, NotImplementedDirective, NotImplementedDialogComponent, BookAboutComponent, BookDetailComponent,
+    UserDetailComponent],
   exports: [ HeaderComponent, NotImplementedDirective, BookAboutComponent, BookDetailComponent, UserDetailComponent]
 })
 export class ViewPartsModule { }
