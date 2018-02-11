@@ -18,7 +18,7 @@ export class TradingService implements RestApiGateway<ITrading> {
    */
   get(params: {[key: string]: string}): Observable<ITrading> {
     const queries = queryString.stringify(params);
-    const targetURL = API_BASE_URL + 'trades' + ( queries === '' ? '' : '?' + queries);
+    const targetURL = API_BASE_URL + 'trading' + ( queries === '' ? '' : '?' + queries);
     return this.http.get<ITrading>(targetURL);
   }
 }
