@@ -1,6 +1,7 @@
 import { UserRegisterService } from './../../service/user/user-register.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../../service/user/user.service';
 
 @Component({
   selector: 'bookchain-user-register',
@@ -10,13 +11,17 @@ import { Router } from '@angular/router';
 })
 export class UserRegisterComponent implements OnInit {
 
-  constructor(private router: Router, private userRegisterService: UserRegisterService) { }
+  constructor(private router: Router, private userRegisterService: UserRegisterService, private userService: UserService) { }
 
   public localId: string;
   public displayName: string;
   public input_prohibit = false;
 
   ngOnInit() {
+    this.userService.getLoginUser()
+      .subscribe((user) => {
+        this.router.navigate(['/']);
+      });
   }
 
   register() {
