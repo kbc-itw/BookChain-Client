@@ -6,7 +6,8 @@
 export const environment = {
   production: false,
 };
-export const PORT_NUMBER = 3000;
-export const API_PORT_NUMBER = 3000;
+export const PORT_NUMBER = 80;
+export const API_PORT_NUMBER = 80;
+export const WEBSOCKET_PORT_NUMBER = 8080;
 export const API_BASE_URL = 'http://localhost:' + API_PORT_NUMBER + '/';
-export const WEBSOCKET_BASE_URL = 'ws://localhost:' + API_PORT_NUMBER + '/';
+export const WEBSOCKET_BASE_URL = 'ws://localhost:' + WEBSOCKET_PORT_NUMBER + '/';
