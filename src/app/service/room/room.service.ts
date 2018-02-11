@@ -12,7 +12,7 @@ export class RoomService {
   public post( purpose: string, inviter: string ): Observable<RoomInfo> {
     const params = {purpose, inviter};
     const queries = queryString.stringify(params);
-    const targetURL = API_BASE_URL + 'room?' + queries;
+    const targetURL = API_BASE_URL + 'rooms?' + queries;
     return this.http.post<RoomInfo>(targetURL, {});
   }
 
