@@ -34,8 +34,7 @@ export class UserRegisterComponent implements OnInit {
       });
   }
 
-  onClick(event) {
-    event.stopPropagation();
+  onClick() {
     this.register();
   }
 }
