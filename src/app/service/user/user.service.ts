@@ -30,7 +30,7 @@ export class UserService implements RestApiGateway<IUser> {
   getLoginUser(): Observable<IUser> {
     const targetURL = API_BASE_URL + 'user/login';
     return this.http.get<UserInfo>(targetURL)
-      .flatMap(info => this.get({ localId: info.localId }));
+      .flatMap(info => this.get({ id: info.localId }));
   }
 
 
