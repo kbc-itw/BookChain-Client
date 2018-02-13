@@ -111,7 +111,7 @@ export class TradeInviterComponent implements OnInit {
   }
 
   private transactionComitted(wsEvent: WebSocketEvent): void {
-    // 何させよう……
+    this.state = 'TransactionCommitted';
   }
 
   private receiveCancel(wsEvent: WebSocketEvent): void {

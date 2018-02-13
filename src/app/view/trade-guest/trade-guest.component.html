@@ -1,15 +1,15 @@
 <div *ngIf="loginUser">
   <div [ngSwitch]="state">
-    <div *ngSwitchCase="'ReadQRCode'">
+    <div *ngSwitchCase="'ReadQRcode'">
       <p>相手の画面に表示されているQRコードを読みとってください</p>
-      <input type="file" #qrcodeInput name="qrcodeInput" id="qrcode-input" accept="image/*" capture="camera" style="display:none;"(change)="onClickQrcodeInput($event)"/>
+      <input type="file" #qrcodeInput name="qrcodeInput" id="qrcode-input" accept="image/*" capture="camera" style="display:none;"(change)="onChangeQrcodeInput($event)"/>
       <button mat-raised-button  color="primary" [disabled]="uploading"  (click)="propagateToQrcodeInput($event)">カメラを起動</button>
     </div>
     <div *ngSwitchCase="'ReadBarcode'">
       <p><span *ngIf="purpose === 'rental; then rental else return'"></span>書籍のバーコードを読み取って</p>
       <ng-template #rental>借りたい</ng-template>
       <ng-template #return>返したい</ng-template>
-      <input type="file" #barcodeInput name="barcodeInput" id="barcode-input" accept="image/*" capture="camera" style="display:none;"(change)="onClickBarcodeInput($event)"/>
+      <input type="file" #barcodeInput name="barcodeInput" id="barcode-input" accept="image/*" capture="camera" style="display:none;"(change)="onChangeBarcodeInput($event)"/>
       <button mat-raised-button  color="primary" [disabled]="uploading"  (click)="propagateToBarcodeInput($event)">カメラを起動</button>
       <button mat-raised-button color="warn" (click)="cancel($event)">やめる</button>
     </div>
@@ -18,6 +18,9 @@
         <p>こちらでよろしいですか？</p>
         <button mat-raised-button color="primary" (click)="confirmProposal($event)">これにする</button>
         <button mat-raised-button color="warn" (click)="cancel($event)">やめる</button>
+    </div>
+    <div *ngSwitchCase="'TransactionCommitted'">
+      取引が完了しました
     </div>
   </div>
 </div>

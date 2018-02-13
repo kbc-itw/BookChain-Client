@@ -21,7 +21,7 @@ export class TradeGuestComponent implements OnInit {
   private readonly barcodeRawImageReader = new FileReader();
 
   private webSocket: WebSocket;
-  private state: 'ReadQRCode' | 'ReadBarcode' | 'WaitingProposal' | 'ShowProposal' |
+  private state: 'ReadQRcode' | 'ReadBarcode' | 'WaitingProposal' | 'ShowProposal' |
   'WaitingPartnerConfirmTransaction' | 'TransactionCommitted';
   private loginUser: IUser;
   private partner: IUser;
@@ -32,7 +32,10 @@ export class TradeGuestComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userService.getLoginUser().subscribe((loginUser) => this.loginUser = loginUser);
+    this.userService.getLoginUser().subscribe((loginUser) => {
+      this.loginUser = loginUser;
+      this.state = 'ReadQRcode';
+    });
 
     this.qrcodeRawImageReader.onload = (progressEvent) => {
       const qrcodeReader = require('qrcode-reader');
@@ -126,19 +129,19 @@ export class TradeGuestComponent implements OnInit {
     window.alert(payload);
   }
 
-  private onClickQrcodeInput(uploadEvent: any) {
+  private onChangeQrcodeInput(uploadEvent: any) {
     this.qrcodeRawImageReader.readAsDataURL(uploadEvent.target.files[0]);
   }
 
-  private propageteToQrcodeInput(event: any) {
+  private propagateToQrcodeInput(event: any) {
     this.qrcodeInput.nativeElement.click();
   }
 
-  private onClickBarcodeInput(uploadEvent: any) {
+  private onChangeBarcodeInput(uploadEvent: any) {
     this.barcodeRawImageReader.readAsDataURL(uploadEvent.target.files[0]);
   }
 
-  private propageteToBarcodeInput(event: any) {
+  private propagateToBarcodeInput(event: any) {
     this.barcodeInput.nativeElement.click();
   }
 
