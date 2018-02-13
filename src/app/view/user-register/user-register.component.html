@@ -1,5 +1,5 @@
 <p>
   <label>localID:<input type="textarea" [(ngModel)]="localId"/></label>
   <label>displayName:<input type="textArea" [(ngModel)]="displayName" /></label>
-  <button (click)="onClick()" [disabled]="input_prohibit">送信</button>
+  <button (click)="onClick($event)" [disabled]="input_prohibit">送信</button>
 </p>
