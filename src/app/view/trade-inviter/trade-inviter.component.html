@@ -15,7 +15,7 @@
       <button mat-raised-button color="primary" (click)="confirmProposal($event)">これにする</button>
       <button mat-raised-button color="warn" (click)="cancel($event)">やめる</button>
   </div>
-  <div *ngSwitchcase="'TransactionCommitted'">
+  <div *ngSwitchCase="'TransactionCommitted'">
     取引が完了しました
   </div>
 </div>
