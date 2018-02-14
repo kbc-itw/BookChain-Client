@@ -48,7 +48,7 @@ export class TradeGuestComponent implements OnInit {
 
         const roomInfo = JSON.parse(result);
         this.webSocket = new WebSocket(WEBSOCKET_BASE_URL + 'rooms/connect?id='
-        + roomInfo.id
+        + roomInfo.room.id
         + '&role=guest'
         + '&locator=' + this.loginUser
         + '&inviteToken=' + roomInfo.inviteToken);
