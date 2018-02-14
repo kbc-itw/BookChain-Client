@@ -97,10 +97,10 @@ export class TradeInviterComponent implements OnInit {
     const id = wsEvent.data.split('@')[0];
     const host = wsEvent.data.split('@')[1];
 
-    this.userService.get({id, host})
+    this.userService.getUser(host, id)
       .subscribe(partner => {
         this.state = 'DisplayReadBarcodeNotification';
-        this.partner = partner[0];
+        this.partner = partner;
       });
   }
 
