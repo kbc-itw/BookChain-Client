@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { HttpClient } from '@angular/common/http';
 import * as queryString from 'query-string';
-import { API_BASE_URL } from '../../../environments/environment';
+import { API_BASE_URL, HOST } from '../../../environments/environment';
 
 @Injectable()
 export class UserService implements RestApiGateway<IUser> {
@@ -24,16 +24,18 @@ export class UserService implements RestApiGateway<IUser> {
 }
 
 
-  /**
-   * TODO
-   */
   getLoginUser(): Observable<IUser> {
     const targetURL = API_BASE_URL + 'user/login';
     return this.http.get<UserInfo>(targetURL)
-      .flatMap(info => this.get({ id: info.localId }));
+      .flatMap(info => this.getUser(HOST, info.localId));
   }
 
-
+  getUser(host: string, id: string): Observable<IUser> {
+    const encodedHost = encodeURIComponent(host);
+    const encodedId = encodeURIComponent(id);
+    const targetURL = API_BASE_URL + 'user/' + encodedHost + '/' + encodedId;
+    return this.http.get<IUser>(targetURL);
+  }
 
 }
 interface UserInfo {
