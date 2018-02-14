@@ -110,8 +110,10 @@ export class TradeGuestComponent implements OnInit {
 
   private showProposal(wsEvent: WebSocketEvent) {
     const payload = wsEvent.data;
+    const id = payload.owner.split('@')[0];
+    const host = payload.owner.split('@')[1];
     Observable.zip(
-      this.userService.get({'locator': payload.owner}),
+      this.userService.getUser(host, id),
       this.bookService.getByISBN(payload.isbn)
     ).subscribe((data: [IUser, IBook]) => {
       this.partner = data[0];

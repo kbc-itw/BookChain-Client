@@ -94,10 +94,13 @@ export class TradeInviterComponent implements OnInit {
   }
 
   private userJoined(wsEvent: WebSocketEvent): void {
-    this.userService.get({'locator': wsEvent.data})
+    const id = wsEvent.data.split('@')[0];
+    const host = wsEvent.data.split('@')[1];
+
+    this.userService.get({id, host})
       .subscribe(partner => {
         this.state = 'DisplayReadBarcodeNotification';
-        this.partner = partner;
+        this.partner = partner[0];
       });
   }
 
