@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/zip';
 import { RoomService } from '../../service/room/room.service';
+import { WEBSOCKET_BASE_URL } from '../../../environments/environment';
 
 @Component({
   selector: 'bookchain-trade-inviter',
@@ -62,7 +63,7 @@ export class TradeInviterComponent implements OnInit {
           this.qrCodeDataUri = url;
 
           // TODO コネクション先
-          this.webSocket = new WebSocket('ws:hoge/rooms/connect?id='
+          this.webSocket = new WebSocket(WEBSOCKET_BASE_URL + 'rooms/connect?id='
             + roomInfo.room.id
             + '&locator=' + this.user.locator
             + '&role=inviter');

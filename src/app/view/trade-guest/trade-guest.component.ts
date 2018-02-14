@@ -6,6 +6,7 @@ import { IUser } from '../../model/user/iuser';
 import Quagga from 'quagga';
 import { IBook } from '../../model/book/ibook';
 import { Observable } from 'rxjs/Observable';
+import { WEBSOCKET_BASE_URL } from '../../../environments/environment';
 
 @Component({
   selector: 'bookchain-trade-guest',
@@ -46,7 +47,7 @@ export class TradeGuestComponent implements OnInit {
           }
 
         const roomInfo = JSON.parse(result);
-        this.webSocket = new WebSocket('ws:hoge/rooms/connect?id='
+        this.webSocket = new WebSocket(WEBSOCKET_BASE_URL + 'rooms/connect?id='
         + roomInfo.id
         + '&role=guest'
         + '&locator=' + this.loginUser
