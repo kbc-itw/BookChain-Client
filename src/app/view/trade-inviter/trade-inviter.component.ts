@@ -61,11 +61,11 @@ export class TradeInviterComponent implements OnInit {
           }
           this.state = 'DisplayQRCode';
           this.qrCodeDataUri = url;
-
+          const encodedLocator = encodeURIComponent(this.user.locator);
           // TODO コネクション先
           this.webSocket = new WebSocket(WEBSOCKET_BASE_URL + 'rooms/connect?id='
             + roomInfo.room.id
-            + '&locator=' + this.user.locator
+            + '&locator=' + encodedLocator
             + '&role=inviter');
           this.webSocket.onmessage = (event) => {
             const wsEvent = event as WebSocketEvent;
