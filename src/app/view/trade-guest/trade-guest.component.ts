@@ -76,6 +76,7 @@ export class TradeGuestComponent implements OnInit {
           }
         };
       };
+      qrcodeReader.decode(this.qrcodeRawImageReader.result);
     };
 
     this.barcodeRawImageReader.onload = (progressEvent) => {
