@@ -39,7 +39,8 @@ export class TradeGuestComponent implements OnInit {
     });
 
     this.qrcodeRawImageReader.onload = (progressEvent) => {
-      const qrcodeReader = require('qrcode-reader');
+      const QRCodeReader = require('qrcode-reader');
+      const qrcodeReader = new QRCodeReader();
       qrcodeReader.callback = (err: any, result: any) => {
         if (err) {
           window.alert('エラー！');
