@@ -69,24 +69,25 @@ export class TradeInviterComponent implements OnInit {
             + '&role=inviter');
           this.webSocket.onmessage = (event) => {
             const wsEvent = event as WebSocketEvent;
-            switch (wsEvent.data.action) {
+            const data = JSON.parse(wsEvent.data);
+            switch (data.action) {
               case 'USER_JOINED':
-                this.userJoined(wsEvent);
+                this.userJoined(data);
                 break;
               case 'PROPOSAL':
-                this.showProposal(wsEvent);
+                this.showProposal(data);
                 break;
               case 'COMMITED':
-                this.transactionComitted(wsEvent);
+                this.transactionComitted(data);
                 break;
               case 'ROOM_CLOSED':
-                this.cancel(wsEvent);
+                this.cancel(data);
                 break;
               case 'TRANSACTION_CANCELED':
-                this.receiveCancel(wsEvent);
+                this.receiveCancel(data);
                 break;
               case 'INVALID_ACTION':
-                this.cancel(wsEvent);
+                this.cancel(data);
                 break;
             }
           };
@@ -94,9 +95,9 @@ export class TradeInviterComponent implements OnInit {
       });
   }
 
-  private userJoined(wsEvent: WebSocketEvent): void {
-    const id = wsEvent.data.split('@')[0];
-    const host = wsEvent.data.split('@')[1];
+  private userJoined(data: any): void {
+    const id = data.data.split('@')[0];
+    const host = data.data.split('@')[1];
 
     this.userService.getUser(host, id)
       .subscribe(partner => {
@@ -105,22 +106,20 @@ export class TradeInviterComponent implements OnInit {
       });
   }
 
-  private showProposal(wsEvent: WebSocketEvent): void {
-    const payload = JSON.parse(wsEvent.data.data);
-    this.bookService.getByISBN(payload.isbn)
+  private showProposal(data: any): void {
+    this.bookService.getByISBN(data.data.isbn)
       .subscribe(book => {
         this.book = book;
         this.state = 'ShowProposal';
       });
   }
 
-  private transactionComitted(wsEvent: WebSocketEvent): void {
+  private transactionComitted(data: any): void {
     this.state = 'TransactionCommitted';
   }
 
-  private receiveCancel(wsEvent: WebSocketEvent): void {
-    const payload = wsEvent.data;
-    window.alert(payload);
+  private receiveCancel(data: any): void {
+    window.alert(data);
   }
 
   private confirmProposal(event: any): void {

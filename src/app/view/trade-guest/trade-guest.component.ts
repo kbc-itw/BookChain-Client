@@ -43,7 +43,8 @@ export class TradeGuestComponent implements OnInit {
       const qrcodeReader = new QRCode();
       qrcodeReader.callback = (err: any, result: any) => {
         if (err) {
-          window.alert('エラー！');
+          console.log(err);
+          window.alert('エラー！　もういっぺんやれカス！');
           return;
           }
 
@@ -55,24 +56,25 @@ export class TradeGuestComponent implements OnInit {
         + '&inviteToken=' + roomInfo.inviteToken);
         this.webSocket.onmessage = (event) => {
           const wsEvent = event as WebSocketEvent;
-          switch (wsEvent.data.action) {
+          const data = JSON.parse(wsEvent.data);
+          switch (data.action) {
             case 'ENTRY_PERMITTED':
-              this.entryPermitted(wsEvent);
+              this.entryPermitted(data);
               break;
             case 'PROPOSAL':
-              this.showProposal(wsEvent);
+              this.showProposal(data);
               break;
             case 'COMMITED':
-              this.transactionComitted(wsEvent);
+              this.transactionComitted(data);
               break;
             case 'ROOM_CLOSED':
-              this.cancel(wsEvent);
+              this.cancel(data);
               break;
             case 'TRANSACTION_CANCELED':
-              this.receiveCancel(wsEvent);
+              this.receiveCancel(data);
               break;
             case 'INVALID_ACTION':
-              this.cancel(wsEvent);
+              this.cancel(data);
               break;
           }
         };
@@ -105,33 +107,30 @@ export class TradeGuestComponent implements OnInit {
     };
   }
 
-  private entryPermitted(wsEvent: WebSocketEvent) {
-    const payload = wsEvent.data;
-    this.purpose = payload.purpose;
+  private entryPermitted(data: any) {
+    this.purpose = data.purpose;
     this.state = 'ReadBarcode';
   }
 
-  private showProposal(wsEvent: WebSocketEvent) {
-    const payload = wsEvent.data;
-    const id = payload.owner.split('@')[0];
-    const host = payload.owner.split('@')[1];
+  private showProposal(data: any) {
+    const id = data.data.owner.split('@')[0];
+    const host = data.data.owner.split('@')[1];
     Observable.zip(
       this.userService.getUser(host, id),
-      this.bookService.getByISBN(payload.isbn)
-    ).subscribe((data: [IUser, IBook]) => {
-      this.partner = data[0];
-      this.book = data[1];
+      this.bookService.getByISBN(data.data.isbn)
+    ).subscribe((result: [IUser, IBook]) => {
+      this.partner = result[0];
+      this.book = result[1];
       this.state = 'ShowProposal';
     });
   }
 
-  private transactionComitted(wsEvent: WebSocketEvent) {
+  private transactionComitted(data: any) {
     this.state = 'TransactionCommitted';
   }
 
-  private receiveCancel(wsEvent: WebSocketEvent): void {
-    const payload = wsEvent.data;
-    window.alert(payload);
+  private receiveCancel(data: any): void {
+    window.alert(data);
   }
 
   private onChangeQrcodeInput(uploadEvent: any) {
