@@ -7,7 +7,7 @@ import Quagga from 'quagga';
 import { IBook } from '../../model/book/ibook';
 import { Observable } from 'rxjs/Observable';
 import { WEBSOCKET_BASE_URL } from '../../../environments/environment';
-const QRCode = require('qrcode-reader');
+const QRCode = require('qrcode-reader').default;
 
 @Component({
   selector: 'bookchain-trade-guest',
@@ -40,7 +40,6 @@ export class TradeGuestComponent implements OnInit {
     });
 
     this.qrcodeRawImageReader.onload = (progressEvent) => {
-      console.log(QRCode);
       const qrcodeReader = new QRCode();
       qrcodeReader.callback = (err: any, result: any) => {
         if (err) {
